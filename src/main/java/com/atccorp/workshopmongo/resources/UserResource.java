@@ -23,7 +23,11 @@ public class UserResource {
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> list = service.findAll();
-		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		// formatter:off
+		List<UserDTO> listDto = list.stream()
+								.map(x -> new UserDTO(x))
+								.collect(Collectors.toList());
+		// formatter:on
 		return ResponseEntity.ok().body(listDto);
 	}
 	
@@ -56,5 +60,5 @@ public class UserResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 }
